@@ -83,20 +83,69 @@ function success(pos) {
     function fetchApiData() {
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=cae3358de5a67c62ef2de8901342f03d`)
             .then((response) => response.json())
-            .then((data) => {
-                cidade.innerHTML = `${data.name}, ${data.sys.country}`;
-                clima.innerHTML = data.weather[0].description;
-                imagem.innerHTML = `<img src="images/${data.weather[0].icon}.png">`;
-                temperatura.innerHTML = (data.main.temp - 273.15).toFixed(0);
-                tempMaxMin.innerHTML = `Max: ${(data.main.temp_max - 273.15).toFixed(0)}°C / Min: ${(data.main.temp_min - 273.15).toFixed(0)}°C`
-                console.log(data);
-            })
+            .then((data) => { getApi(data) })
     }
     fetchApiData();
+}
 
+let dados = []
+
+
+function getApi(data) {
+    var hora = String(myData.getHours()).padStart(2, '0');
+    var min = String(myData.getMinutes()).padStart(2, '0');
+
+    cidade.innerHTML = `${data.name}, ${data.sys.country}`;
+    clima.innerHTML = data.weather[0].description;
+    imagem.innerHTML = `<img src="images/${data.weather[0].icon}.png">`;
+    temperatura.innerHTML = (data.main.temp - 273.15).toFixed(0);
+    tempMaxMin.innerHTML = `Max: ${(data.main.temp_max - 273.15).toFixed(0)}°C / Min: ${(data.main.temp_min - 273.15).toFixed(0)}°C`
+
+    dados.push(data.name, clima.innerHTML, imagem.innerHTML, temperatura.innerHTML, hora, min);
 }
 
 function error(err) {
-    console.log(err)
+    alert(err + ' Por favor, ative sua localização.');
 }
 navigator.geolocation.getCurrentPosition(success, error);
+
+function botaoSalvar() {
+    localStorage.setItem("dadosSalvos", dados);
+    passarDados();
+}
+
+let listaImagem = document.querySelector('.listaImagem');
+let listaTemperatura = document.querySelector('.listaTemperatura');
+let listaClima = document.querySelector('.listaClima');
+let listaData = document.querySelector('.listaData');
+let listaHora = document.querySelector('.listaHora');
+
+function passarDados() {
+    let dadosSalvados = localStorage.getItem("dadosSalvos").split(',');
+
+    listaImagem.innerHTML = dadosSalvados[2];
+    listaTemperatura.innerHTML = `${dadosSalvados[3]}°C`;
+    listaClima.innerHTML = dadosSalvados[1];
+    listaData.innerHTML = `${diaS}, ${dia} de ${mes} de ${ano}`
+    listaHora.innerHTML = `${dadosSalvados[4]}h${dadosSalvados[5]}`;
+
+}
+
+function excluir() {
+    localStorage.removeItem("dadosSalvos");
+}
+
+/*
+
+Store
+localStorage.setItem("nomeVariavel", "valor");
+localStorage.nomeVariavel = "valor";
+
+Retrieve
+document.querySelector(".div").innerHTML = localStorage.getItem("nomeVariavel");
+document.querySelector(".div").innerHTML = localStorage.nomeVariavel
+
+Remove
+localStorage.removeItem("nomeVariavel");
+
+*/

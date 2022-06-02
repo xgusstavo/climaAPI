@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Clima</title>
 </head>
-<body>
+<body onload="passarDados()">
     <div class="container">
         <div class="header"><h1>Tempo e Temperatura</h1></div>
 
@@ -28,8 +28,24 @@
         </div>
 
         <div class="footer">
-            <div class="salvarTemperatura"><input type="button" value="Salvar Temperatura"></div>
+            <div class="salvarTemperatura">
+                <button onclick="botaoSalvar()">Salvar Temperatura</button>
+            </div>
         </div>
+    </div>
+
+    <div class="containerTemp">
+        <div class="containerTitulo"><h2>Temperaturas Salvas</h2></div>
+        <div class="tempSalvas">
+            <ul class="ulSalvas">
+                <li class="listaImagem"><img src="images/unknown.png" style="width: 50px;"></li>
+                <li class="listaTemperatura">Temperatura</li>
+                <li class="listaClima">Clima</li>
+                <li class="listaData">Data</li>
+                <li class="listaHora">Hora</li>
+            </ul>
+        </div>
+        <div class="containerFooter"><button onclick="excluir()">Excluir</button></div>
     </div>
 
     <script src="script.js"></script>

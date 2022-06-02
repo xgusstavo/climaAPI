@@ -92,8 +92,8 @@ span {
     background-color: rgb(194, 194, 194);
 }
 
-.footer .salvarTemperatura input {
-    padding: 10px 30px;
+.footer .salvarTemperatura button {
+    padding: 10px;
     border-radius: 5px;
     border: none;
     background-color: whitesmoke;
@@ -102,6 +102,67 @@ span {
     transition: .3s;
 }
 
-.footer .salvarTemperatura input:hover {
+.footer .salvarTemperatura button:hover {
+    background-color: rgb(194, 194, 194);
+}
+
+.containerTemp {
+    text-align: center;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: whitesmoke;
+    width: 350px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, .4);
+}
+
+.containerTitulo {
+    background-color: rgb(230, 230, 230);
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+    font-size: 12px;
+}
+
+.containerTitulo h2 {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.tempSalvas {
+    padding: 10px;
+}
+
+.tempSalvas ul {
+    padding: 10px;
+    list-style: none;
+}
+
+.tempSalvas li {
+    padding: 5px;
+}
+
+.tempSalvas a {
+    text-decoration: none;
+}
+
+.containerFooter {
+    background-color: rgb(230, 230, 230);
+    padding: 10px;
+    border-radius: 0 0 20px 20px;
+}
+
+.containerFooter button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.containerFooter button:hover {
     background-color: rgb(194, 194, 194);
 }

@@ -1,12 +1,9 @@
-//http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=%20${longitude}&appid={appKey}
-
 const cidade = document.querySelector('.cidade');
 const clima = document.querySelector('.clima');
 const imagem = document.querySelector('.imagem');
 const temperatura = document.querySelector('.temperatura');
 const tempMaxMin = document.querySelector('.maxmin');
-const diaAtual = document.querySelector('.data')
-
+const diaAtual = document.querySelector('.data');
 
 const myData = new Date();
 let diaS = String(myData.getDay());
@@ -75,6 +72,7 @@ switch (diaS) {
     case '6':
         diaS = 'Sabado';
 }
+
 diaAtual.innerHTML = `${diaS}, ${dia} de ${mes} de ${ano}`;
 
 function success(pos) {
@@ -88,8 +86,7 @@ function success(pos) {
     fetchApiData();
 }
 
-let dados = []
-
+let dados = [];
 
 function getApi(data) {
     var hora = String(myData.getHours()).padStart(2, '0');
@@ -121,31 +118,18 @@ let listaData = document.querySelector('.listaData');
 let listaHora = document.querySelector('.listaHora');
 
 function passarDados() {
-    let dadosSalvados = localStorage.getItem("dadosSalvos").split(',');
+    let dadosSalvados = localStorage.getItem("dadosSalvos") == null ? null : localStorage.getItem("dadosSalvos").split(',');
 
+    if (dadosSalvados != null) {
     listaImagem.innerHTML = dadosSalvados[2];
     listaTemperatura.innerHTML = `${dadosSalvados[3]}°C`;
     listaClima.innerHTML = dadosSalvados[1];
     listaData.innerHTML = `${diaS}, ${dia} de ${mes} de ${ano}`
     listaHora.innerHTML = `${dadosSalvados[4]}h${dadosSalvados[5]}`;
-
+    }
 }
 
 function excluir() {
     localStorage.removeItem("dadosSalvos");
+    location.reload();
 }
-
-/*
-
-Store
-localStorage.setItem("nomeVariavel", "valor");
-localStorage.nomeVariavel = "valor";
-
-Retrieve
-document.querySelector(".div").innerHTML = localStorage.getItem("nomeVariavel");
-document.querySelector(".div").innerHTML = localStorage.nomeVariavel
-
-Remove
-localStorage.removeItem("nomeVariavel");
-
-*/
